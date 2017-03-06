@@ -21,9 +21,14 @@ export function Request (defaults) {
     this.Cookie = defaults.Cookie || {}
     this.Cookie['pgv_pvi'] = getPgv()
     this.Cookie['pgv_si'] = getPgv('s')
-    this.axios.defaults.headers.common['cookie'] = Object.keys(this.Cookie).map(key => {
-      return `${key}=${this.Cookie[key]}`
-    }).join('; ')
+    this.axios.interceptors.request.use(config => {
+      config.headers['cookie'] = Object.keys(this.Cookie).map(key => {
+        return `${key}=${this.Cookie[key]}`
+      }).join('; ')
+      return config
+    }, err => {
+      return Promise.reject(err)
+    })
     this.axios.interceptors.response.use(res => {
       let setCookie = res.headers['set-cookie']
       if (setCookie) {

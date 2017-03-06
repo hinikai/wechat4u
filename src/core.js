@@ -51,7 +51,9 @@ export default class WechatCore {
   }
 
   set botData (data) {
-    Object.assign(this, data)
+    Object.keys(data).forEach(key => {
+      Object.assign(this[key], data[key])
+    })
   }
 
   getUUID () {
