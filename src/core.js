@@ -423,7 +423,7 @@ export default class WechatCore {
           'ClientMsgId': clientMsgId
         }
       }
-      this.request({
+      return this.request({
         method: 'POST',
         url: this.CONF.API_webwxsendmsg,
         params: params,
@@ -465,7 +465,7 @@ export default class WechatCore {
         data.Msg.EMoticonMd5 = id
       }
 
-      this.request({
+      return this.request({
         method: 'POST',
         url: this.CONF.API_webwxsendemoticon,
         params: params,
