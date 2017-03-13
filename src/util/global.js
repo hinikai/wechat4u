@@ -48,28 +48,31 @@ export function formatNum (num, length) {
 }
 
 export const assert = {
-  equal (actual, expected, message) {
+  equal (actual, expected, response) {
     try {
       Assert.equal(actual, expected)
     } catch (e) {
       debug(e)
-      throw message
+      e.response = response
+      throw e
     }
   },
-  notEqual (actual, expected, message) {
+  notEqual (actual, expected, response) {
     try {
       Assert.notEqual(actual, expected)
     } catch (e) {
       debug(e)
-      throw message
+      e.response = response
+      throw e
     }
   },
-  ok (actual, message) {
+  ok (actual, response) {
     try {
       Assert.ok(actual)
     } catch (e) {
       debug(e)
-      throw message
+      e.response = response
+      throw e
     }
   }
 }
