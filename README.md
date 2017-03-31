@@ -14,9 +14,21 @@
 
   扫描二维码，开启激情果撩，验证消息：**我爱wechat4u**
 
-## 安装使用
+## Announcing wechat4u v0.7.0
 
-wechat4u@0.6.x更新了大量API，增强了稳定性
+### Features
+
+- 导出和导入保持微信登录的必要数据 bot.botData ([#160](https://github.com/nodeWechat/wechat4u/pull/160))
+- 修改联系人备注 bot.updateRemarkName(UserName, RemarkName) ([#121](https://github.com/nodeWechat/wechat4u/pull/121))
+- 修改群名 bot.updateChatRoomName(ChatRoomUserName, NewName) ([#168](https://github.com/nodeWechat/wechat4u/pull/168))
+- 转发消息 bot.forwardMsg(msg, toUserName) (https://github.com/nodeWechat/wechat4u/commit/a7d6f0b5eeb7e7a5d9712ac09bd5696f413a1159)
+- 撤回消息 bot.revokeMsg(MsgID, toUserName) (https://github.com/nodeWechat/wechat4u/commit/729de22ef1f98703a1427085e0eb5ef11640b4ee)
+
+### Changes
+
+- asdas
+
+## 安装使用
 
 ```
 npm install --save wechat4u@latest
