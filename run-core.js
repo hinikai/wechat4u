@@ -186,7 +186,40 @@ bot.on('message', msg => {
       /**
        * 文本消息
        */
-      console.log(msg.Content)
+        console.log(msg.Content)
+        //console.log(msg);
+        var user = bot.contacts[msg.FromUserName];
+        console.log(user);
+        //console.log(user);
+
+        //if (user.MemberCount == 0) {
+        //if (user.NickName == '测试群') {
+        if (user.isSelf || user.NickName == '测试群' || user.NickName == 'momo') {
+            var content = msg.Content;
+            var index = content.indexOf('\n');
+            if (index >= 0) {
+                content = content.slice(index + 2);
+            }
+            request.post({
+                url:'http://www.tuling123.com/openapi/api', 
+                form: { "key":"6168195bb4724ddab21b508ace7fb14d", "info": content, "userid":user.UserName }
+            }, function(err,httpResponse,body){ 
+                bot.sendMsg('机器人:' + JSON.parse(body).text, user.UserName)
+                .catch(err => {
+                  bot.emit('error', err)
+                })
+            })
+
+            /*
+            bot.sendMsg('test', msg.FromUserName)
+                .catch(err => {
+                  bot.emit('error', err)
+                })
+            */
+
+            
+        }
+
       break
     case bot.CONF.MSGTYPE_IMAGE:
       /**
@@ -311,4 +344,6 @@ bot.on('message', msg => {
   }).catch(err => {
     bot.emit('error', err)
   })
+    
 })
+
